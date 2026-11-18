@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tasbih Tracker</title>
+<style>
+:root{--p:#1DC4B2;--pd:#0E8F81;--on:#05312d;--bg:#f4fbfa;--card:#fff;--tx:#12302d;--mu:#6b8480;--soft:#dff6f3;--bd:#bfe8e3;--red:#d64545;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+:root[data-theme=dark]{--bg:#0d1f1d;--card:#142b28;--tx:#e6f6f4;--mu:#8fb0ab;--soft:#173833;--bd:#245650}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--tx);display:flex;justify-content:center}
+#app{width:100%;max-width:480px;height:100%;display:flex;flex-direction:column;position:relative;background:var(--bg);overflow:hidden}
+header{background:var(--p);color:var(--on);padding:calc(var(--sat) + 14px) 16px 14px;text-align:center;font-size:20px;font-weight:700;position:relative;flex:none}
+header .back{position:absolute;left:10px;bottom:10px;background:none;border:0;font-size:26px;color:var(--on);padding:4px 10px}
+header .thm{position:absolute;right:10px;bottom:10px;background:none;border:0;font-size:22px;padding:4px 8px}
+main{flex:1;overflow-y:auto;padding:16px}
+nav{flex:none;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:var(--sab)}
+nav button{flex:1;background:none;border:0;padding:10px 0 8px;color:var(--mu);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button .i{font-size:22px;line-height:1}
+nav button.on{color:var(--pd);font-weight:700}
+.fab{position:absolute;right:18px;bottom:calc(var(--sab) + 84px);width:56px;height:56px;border-radius:50%;background:var(--p);color:var(--on);border:0;font-size:30px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);border-left:5px solid var(--p)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.t{font-size:18px;font-weight:700}
+.mu{color:var(--mu);font-size:13px}
+.bar{height:9px;border-radius:9px;background:var(--soft);overflow:hidden;margin:8px 0 12px}
+.bar i{display:block;height:100%;background:var(--p);border-radius:9px}
+.stats{display:flex;justify-content:space-between;font-size:13px;color:var(--mu)}
+.stats b{color:var(--pd)}
+.btn{background:var(--p);color:var(--on);border:0;border-radius:30px;padding:14px;font-size:16px;font-weight:700;width:100%}
+.circ{width:48px;height:48px;border-radius:50%;border:0;font-size:24px;flex:none;background:var(--soft);color:var(--pd)}
+.circ.m{background:#fbe3e3;color:var(--red)}
+.empty{text-align:center;color:var(--mu);margin-top:25vh}
+.empty .big{font-size:60px}
+input,textarea,select{width:100%;border:1.5px solid var(--p);border-radius:16px;padding:14px;font-size:16px;background:var(--card);color:var(--tx);margin-bottom:12px;font-family:inherit}
+h3{color:var(--pd);margin:14px 0 8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
+.chip{flex:none;background:var(--soft);border:1px solid var(--bd);border-radius:30px;padding:10px 18px;font-size:20px;color:var(--tx);font-family:"Amiri","Traditional Arabic",serif}
+.tap{width:230px;height:230px;border-radius:50%;border:0;background:var(--p);color:var(--on);font-size:64px;font-weight:800;box-shadow:0 8px 24px rgba(29,196,178,.5);margin:18px auto;display:block;user-select:none;touch-action:manipulation}
+.tap:active{transform:scale(.96)}
+.hero{background:var(--p);color:var(--on);text-align:center;padding:calc(var(--sat) + 12px) 16px 22px;flex:none;position:relative}
+.ring{width:150px;height:150px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center}
+.ring div{width:118px;height:118px;border-radius:50%;background:var(--p);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;font-weight:800}
+.s3{display:flex;gap:10px;margin-bottom:14px}
+.s3 div{flex:1;background:var(--card);border-radius:16px;padding:14px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.s3 b{display:block;font-size:20px}
+.quote{background:#fff6dc;color:#6b5200;border:1px solid #f1d98a;border-radius:14px;padding:14px;font-style:italic;margin-bottom:16px}
+.tl{border-left:3px solid var(--bd);margin-left:8px;padding-left:14px}
+.tl .card{border-left:0;position:relative}
+.tl .card:before{content:"";position:absolute;left:-24px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--pd)}
+.tabs{display:flex;background:var(--p);flex:none}
+.tabs button{flex:1;background:none;border:0;padding:12px;font-size:16px;color:rgba(5,49,45,.6);border-bottom:3px solid transparent}
+.tabs button.on{color:var(--on);font-weight:700;border-color:#f5b400}
+#modal{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:24px;z-index:20}
+#modal .box{background:var(--card);border-radius:20px;padding:20px;width:100%}
+#splash{position:absolute;inset:0;z-index:30;background:linear-gradient(#0e8f81,#1DC4B2);color:var(--on);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .4s}
+#splash .logo{width:110px;height:110px;border-radius:30px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal .h{color:var(--mu);font-size:12px;padding:6px 0}
+.cd{aspect-ratio:1;border:0;background:none;color:var(--tx);border-radius:50%;font-size:15px;padding:0}
+.cd.dim{color:var(--mu);opacity:.55}.cd.part{background:var(--soft)}.cd.ok{background:#2ea44f;color:#fff}.cd.td{box-shadow:inset 0 0 0 2px var(--pd)}.cd.sel{background:var(--p);color:var(--on);font-weight:700}
+.ins{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ins div{background:var(--card);border-radius:18px;padding:18px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}.ins b{display:block;font-size:30px;margin:6px 0}
+.badge{background:var(--soft);color:#2ea44f;border-radius:20px;padding:6px 14px;font-weight:700;font-size:13px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="splash"><div class="logo">📖</div><div style="font-size:30px;font-weight:800">Tasbih Tracker</div><div style="margin-top:8px">Track your daily tasbih counts with ease</div></div>
+  <div id="head"></div>
+  <main id="main"></main>
+  <button class="fab" id="fab">+</button>
+  <nav id="nav"></nav>
+  <div id="modal"><div class="box" id="mbox"></div></div>
+</div>
+<script>
+var S={tasbihs:[],chals:[],sel:'',day:''};
+try{var raw=localStorage.getItem('tt1');if(raw)S=JSON.parse(raw)}catch(e){}
+S.tasbihs=S.tasbihs||[];S.chals=S.chals||[];S.hist=S.hist||{};S.nm=S.nm||{};if(!S.theme){try{S.theme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}catch(e){S.theme='light'}}document.documentElement.setAttribute('data-theme',S.theme);
+var V={tab:'rep',sub:null,ctab:'active',cid:null,draft:{},rp:'day',rd:Date.now()};
+function save(){try{localStorage.setItem('tt1',JSON.stringify(S))}catch(e){}}
+function today(){return new Date().toDateString()}
+function rollDay(){if(S.day!==today()){S.day=today();S.tasbihs.forEach(function(t){t.today=0});save()}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function fmt(ts){var d=new Date(ts),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()],h=d.getHours(),ap=h>=12?'PM':'AM';h=h%12||12;var mi=('0'+d.getMinutes()).slice(-2);return d.getDate()+' '+m+', '+String(d.getFullYear()).slice(2)+' at '+h+':'+mi+' '+ap}
+function pct(c){var p=c.goal?c.current/c.goal*100:0;return Math.min(100,p)}
+function pctTxt(c){var p=pct(c);return (p<10&&p>0?p.toFixed(1):Math.round(p))+'%'}
+var $=function(id){return document.getElementById(id)};
+function ask(title,ph,cb){
+  $('mbox').innerHTML='<div class="t" style="margin-bottom:12px">'+esc(title)+'</div><input id="mi" type="number" inputmode="numeric" placeholder="'+esc(ph)+'"><div class="row"><button class="btn" id="mc" style="background:var(--soft);color:var(--pd)">Cancel</button><button class="btn" id="mo">OK</button></div>';
+  $('modal').style.display='flex';$('mi').focus();
+  $('mc').onclick=function(){$('modal').style.display='none'};
+  $('mo').onclick=function(){var v=parseInt($('mi').value,10);$('modal').style.display='none';if(v>0)cb(v)};
+}
+function addChal(c,n,lg){
+  var from=c.current,to=Math.max(0,from+n);if(lg)c.log.unshift({from:from,add:n,to:to,t:Date.now()});c.current=to;
+  if(c.current>=c.goal&&!c.done){c.done=true}
+  save();render();
+}
+function render(){
+  rollDay();
+  var h='',m='',fab=false,nav=true;
+  var titles={rep:'Overview',log:'Tasbih Log',counter:'Counter',chal:'Challenges',about:'About Developer'};
+  if(V.sub==='add'){
+    h='<header><button class="back" onclick="V.sub=null;render()">←</button>Add Tasbih</header>';
+    var lib=['سبحان الله','الحمد لله','الله أكبر','لا إله إلا الله','أستغفر الله'];
+    m='<h3 style="margin-top:0">Quick Library</h3><div class="chips">'+lib.map(function(x,i){var tr=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah'][i];return '<button class="chip" onclick="$(\'fn\').value=\''+x+'\';$(\'fd\').value=\''+tr+'\'">'+x+'</button>'}).join('')+'</div>'
+     +'<h3>Tasbih Details</h3><input id="fn" placeholder="Tasbih Name"><textarea id="fd" rows="4" placeholder="Description"></textarea><input id="fg" type="number" inputmode="numeric" placeholder="Daily Goal">'
+     +'<h3>Daily Reminder</h3><input id="fr" type="time"><button class="btn" id="fs">Save</button>';
+    nav=false;
+  }else if(V.sub==='addc'){
+    h='<header><button class="back" onclick="V.sub=null;render()">←</button>New Challenge</header>';
+    m='<input id="cn" placeholder="Challenge Name (e.g. সায়্যিদুল ইস্তেগফার)"><input id="cg" type="number" inputmode="numeric" placeholder="Goal (e.g. 100000)"><button class="btn" id="cs">Start Challenge</button>';
+    nav=false;
+  }else if(V.sub==='td'){
+    var tt=tget(V.tid);
+    if(!tt){V.sub=null;return render()}
+    h='<header><button class="back" onclick="V.sub=null;render()">←</button>'+esc(tt.name)+'</header>';
+    m=tdHTML(tt);
+  }else if(V.sub==='cd'){
+    var c=S.chals.filter(function(x){return x.id===V.cid})[0];
+    if(!c){V.sub=null;return render()}
+    var deg=pct(c)*3.6;
+    h='<div class="hero"><button class="back" style="top:calc(var(--sat) + 10px);bottom:auto" onclick="V.sub=null;render()">←</button><div class="ring" style="background:conic-gradient(#f5b400 '+deg+'deg,rgba(5,49,45,.18) 0)"><div>'+pctTxt(c)+'<small style="font-size:13px;font-weight:400">Progress</small></div></div><div class="t" style="font-size:24px">'+esc(c.name)+'</div></div>';
+    m='<div class="s3"><div>🚩<b>'+c.goal+'</b><span class="mu">Target</span></div><div>✅<b>'+c.current+'</b><span class="mu">Current</span></div><div>⏳<b>'+Math.max(0,c.goal-c.current)+'</b><span class="mu">Remaining</span></div></div>'
+     +'<div class="quote">✨ Every step counts. Keep going!</div><div class="t" style="margin-bottom:12px">Activity Timeline</div><div class="tl">'
+     +(c.log.length?c.log.map(function(l){return '<div class="card"><div class="row"><div><div class="t" style="font-size:16px">'+(l.add>=0?'Added to count':'Removed from count')+'</div><div style="color:var(--pd);margin:6px 0">'+l.from+(l.add>=0?' + ':' − ')+Math.abs(l.add)+' = '+l.to+'</div><div class="mu">'+fmt(l.t)+'</div></div><div style="text-align:right"><div class="mu">Total</div><div class="t" style="font-size:24px">'+l.to+'</div></div></div></div>'}).join(''):'<div class="mu">No activity yet</div>')+'</div>';
+    nav=false;
+  }else{
+    h='<header><button class="thm" onclick="toggleTheme()">'+(S.theme==='dark'?'☀️':'🌙')+'</button>'+titles[V.tab]+'</header>';
+    if(V.tab==='rep'){
+      h+='<div class="tabs">'+[['day','Day'],['week','Week'],['month','Month'],['year','Year']].map(function(x){return '<button class="'+(V.rp===x[0]?'on':'')+'" onclick="V.rp=\''+x[0]+'\';render()">'+x[1]+'</button>'}).join('')+'</div>';
+      m=repHTML();
+    }else if(V.tab==='log'){
+      fab=true;
+      m=S.tasbihs.length?S.tasbihs.map(function(t){var g=t.goal||0,p=g?Math.min(100,t.today/g*100):0;return '<div class="card"><div class="row"><div class="t">'+esc(t.name)+'</div><button class="circ m" style="width:36px;height:36px;font-size:16px" onclick="delT('+t.id+')">🗑</button></div>'+(t.desc?'<div class="mu">'+esc(t.desc)+'</div>':'')+'<div class="bar"><i style="width:'+p+'%"></i></div><div class="stats"><span>Today: <b>'+t.today+'</b></span><span>Daily goal: <b>'+(g||'—')+'</b></span><span>Total: <b>'+t.total+'</b></span></div>'+(t.rem?'<div class="mu" style="margin-top:8px">🔔 '+t.rem+'</div>':'')+'</div>'}).join('')
+      :'<div class="empty"><div class="big">🔖</div><div class="t" style="margin-top:14px;color:var(--mu)">No Tasbihs Added</div><div style="margin-top:10px">Tap + to add your first Tasbih</div></div>';
+    }else if(V.tab==='counter'){fab=true;m=counterHTML();}else if(V.tab==='counterOLD'){
+      if(!S.tasbihs.length){m='<div class="empty"><div class="big">📿</div><div class="t" style="margin-top:14px;color:var(--mu)">No Tasbihs Added<div class="mu" style="margin-top:10px;font-weight:400">Tap + to add your first Tasbih</div></div></div>'}
+      else{
+        var cur=S.tasbihs.filter(function(t){return String(t.id)===String(S.sel)})[0]||S.tasbihs[0];S.sel=cur.id;
+        m='<select id="sel" onchange="S.sel=this.value;save();render()">'+S.tasbihs.map(function(t){return '<option value="'+t.id+'"'+(t.id===cur.id?' selected':'')+'>'+esc(t.name)+'</option>'}).join('')+'</select>'
+         +'<button class="tap" id="tap">'+cur.today+'</button><div style="text-align:center" class="mu">Today'+(cur.goal?' / Goal '+cur.goal:'')+' · Total '+cur.total+'</div>'
+         +'<div class="row" style="margin-top:18px"><button class="circ m" id="cm">−</button><button class="btn" onclick="askAdd()">+ Add Count</button><button class="circ" onclick="rec(cur(),1);render()">+</button></div><div class="row" style="margin-top:12px"><button class="btn" id="cr" style="background:var(--soft);color:var(--pd)">Reset today</button><button class="btn" style="background:#fbe3e3;color:var(--red)" onclick="delT('+cur.id+')">Delete</button></div>';
+      }
+    }else if(V.tab==='chal'){
+      fab=true;
+      var list=S.chals.filter(function(c){return V.ctab==='active'?!c.done:c.done});
+      h+='<div class="tabs"><button class="'+(V.ctab==='active'?'on':'')+'" onclick="V.ctab=\'active\';render()">Active</button><button class="'+(V.ctab==='done'?'on':'')+'" onclick="V.ctab=\'done\';render()">Completed</button></div>';
+      m=list.length?list.map(function(c){return '<div class="card"><div class="row" onclick="openC('+c.id+')"><div class="t">⭐ '+esc(c.name)+'</div><button class="circ" style="width:34px;height:34px;font-size:16px;background:none;color:var(--red)" onclick="event.stopPropagation();delC('+c.id+')">🗑</button></div>'
+        +'<div class="row" style="margin-top:12px"><span class="mu">Progress</span><b style="color:var(--pd)">'+pctTxt(c)+'</b></div><div class="bar"><i style="width:'+pct(c)+'%"></i></div>'
+        +'<div class="stats"><span>🚩 Goal: <b>'+c.goal+'</b></span><span>✅ Current: <b>'+c.current+'</b></span><span>⏳ Left: <b>'+Math.max(0,c.goal-c.current)+'</b></span></div>'
+        +'<div class="row" style="margin-top:14px"><button class="circ m" onclick="cadd('+c.id+',-1)">−</button><button class="btn" onclick="cask('+c.id+')">+ Add Count</button><button class="circ" onclick="cadd('+c.id+',1)">+</button></div></div>'}).join('')
+        :'<div class="empty"><div class="t" style="color:var(--mu)">'+(V.ctab==='active'?'No active challenges':'No completed challenges yet')+'</div></div>';
+    }else{
+      m='<div class="t" style="font-size:24px">About Me</div><p class="mu" style="font-size:16px;line-height:1.6">Assalamu Alaikum, I am Sadik Mursalin. As a technology enthusiast, I have always wanted to create something that truly benefits people.</p><div class="card"><div class="t" style="color:var(--pd)">✨ App Purpose</div><p class="mu" style="font-size:16px;line-height:1.6">The main purpose of this app is to help people easily track their daily Dhikr or Tasbih. I am not taking any money for this app, and no ads have been included. It is completely for the sake of Allah (Fee Sabilillah).</p><p style="color:var(--pd);font-weight:700;line-height:1.6">I only request your Prayers for me and my family. May Allah accept all our worship.</p></div><p class="mu" style="text-align:center;font-style:italic">Just keep me in your Prayers ❤️</p>';
+    }
+  }
+  $('head').innerHTML=h;$('main').innerHTML=m;
+  $('fab').style.display=fab?'block':'none';
+  $('nav').style.display=nav?'flex':'none';
+  $('nav').innerHTML=[['rep','📊','Overview'],['counter','🔢','Counter'],['chal','⭐','Challenges'],['about','ℹ️','About']].map(function(x){return '<button class="'+(V.tab===x[0]?'on':'')+'" onclick="V.tab=\''+x[0]+'\';V.sub=null;render()"><span class="i">'+x[1]+'</span>'+x[2]+'</button>'}).join('');
+  bind();
+}
+function bind(){
+  if($('fs'))$('fs').onclick=function(){var n=$('fn').value.trim();if(!n){$('fn').focus();return}var nt={id:Date.now(),name:n,desc:$('fd').value.trim(),goal:parseInt($('fg').value,10)||0,rem:$('fr').value,today:0,total:0};S.tasbihs.push(nt);S.sel=nt.id;S.nm[nt.id]=n;save();V.sub=null;V.tab='counter';render()};
+  if($('cs'))$('cs').onclick=function(){var n=$('cn').value.trim(),g=parseInt($('cg').value,10);if(!n||!(g>0))return;S.chals.push({id:Date.now(),name:n,goal:g,current:0,log:[]});save();V.sub=null;V.ctab='active';render()};
+  if($('tap'))$('tap').onclick=function(){var t=cur();rec(t,1);$('tap').textContent=t.today;try{navigator.vibrate(15)}catch(e){}};
+  if($('cm'))$('cm').onclick=function(){var t=cur();if(t.today>0){rec(t,-1);render()}};
+  if($('cr'))$('cr').onclick=function(){var t=cur();rec(t,-t.today);render()};
+}
+var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],PAL=['#1DC4B2','#f5b400','#e4572e','#4f7cff','#9b5de5','#2ea44f','#ff7aa2','#8d6e63'];
+function dk(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function toggleTheme(){S.theme=S.theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',S.theme);save();render()}
+function rec(t,n){var k=dk(new Date()),H=S.hist[k]=S.hist[k]||{};t.today=Math.max(0,t.today+n);t.total=Math.max(0,t.total+n);H[t.id]=Math.max(0,(H[t.id]||0)+n);S.nm[t.id]=t.name;save()}
+function askAdd(){var t=cur();ask('Add Count','Enter number',function(v){rec(t,v);render()})}
+function rng(){var d=new Date(V.rd),a,b;d.setHours(0,0,0,0);if(V.rp==='day'){a=new Date(d);b=new Date(d)}else if(V.rp==='week'){a=new Date(d);a.setDate(d.getDate()-d.getDay());b=new Date(a);b.setDate(a.getDate()+6)}else if(V.rp==='month'){a=new Date(d.getFullYear(),d.getMonth(),1);b=new Date(d.getFullYear(),d.getMonth()+1,0)}else{a=new Date(d.getFullYear(),0,1);b=new Date(d.getFullYear(),11,31)}return [a,b]}
+function rstep(n){var d=new Date(V.rd);if(V.rp==='day')d.setDate(d.getDate()+n);else if(V.rp==='week')d.setDate(d.getDate()+7*n);else if(V.rp==='month'){d.setDate(1);d.setMonth(d.getMonth()+n)}else d.setFullYear(d.getFullYear()+n);V.rd=d.getTime();render()}
+function rtoday(){V.rd=Date.now();render()}
+function rgo(k,p){V.rd=new Date(k.length>7?k+'T00:00:00':k+'-01T00:00:00').getTime();V.rp=p;render()}
+function rlabel(r){var a=r[0],b=r[1];if(V.rp==='day')return DN[a.getDay()]+', '+a.getDate()+' '+MN[a.getMonth()]+' '+a.getFullYear()+(dk(a)===dk(new Date())?' (Today)':'');if(V.rp==='week')return a.getDate()+' '+MN[a.getMonth()]+' – '+b.getDate()+' '+MN[b.getMonth()]+' '+b.getFullYear();if(V.rp==='month')return MN[a.getMonth()]+' '+a.getFullYear();return String(a.getFullYear())}
+function names(H){return Object.keys(H).filter(function(i){return H[i]>0}).map(function(i){return esc(S.nm[i]||'?')+' '+H[i]}).join(' · ')}
+function repHTML(){
+ var r=rng(),a=dk(r[0]),b=dk(r[1]),tot={},days=[],sum=0,mon={},monH={};
+ Object.keys(S.hist).sort().forEach(function(k){if(k<a||k>b)return;var H=S.hist[k],s=0,mk=k.slice(0,7);monH[mk]=monH[mk]||{};for(var id in H){tot[id]=(tot[id]||0)+H[id];monH[mk][id]=(monH[mk][id]||0)+H[id];s+=H[id]}if(s>0){days.push([k,s,H]);sum+=s;mon[mk]=(mon[mk]||0)+s}});
+ var ids=Object.keys(tot).filter(function(i){return tot[i]>0}).sort(function(x,y){return tot[y]-tot[x]});
+ var span=Math.round((r[1]-r[0])/864e5)+1;
+ var h='<div class="row" style="margin-bottom:10px"><button class="circ" onclick="rstep(-1)">‹</button><button class="chip" style="font-family:inherit;font-size:16px;font-weight:700" onclick="openPick()">'+rlabel(r)+' 📅</button><button class="circ" onclick="rstep(1)">›</button></div><div style="text-align:center;margin-bottom:12px"><button class="chip" style="font-size:14px;font-family:inherit;padding:6px 16px" onclick="rtoday()">Today</button></div>';
+ h+='<div class="s3"><div>🔢<b>'+sum+'</b><span class="mu">Total</span></div><div>📅<b>'+days.length+'</b><span class="mu">Active days</span></div><div>📈<b>'+Math.round(sum/span)+'</b><span class="mu">Avg / day</span></div></div>';
+ if(!sum)return h+'<div class="empty" style="margin-top:10vh"><div class="big">📿</div><div class="t" style="margin-top:14px;color:var(--mu)">No tasbih recorded</div></div>';
+ var acc=0,st=ids.map(function(id,i){var p=tot[id]/sum*100,s=PAL[i%8]+' '+acc+'% '+(acc+p)+'%';acc+=p;return s}).join(',');
+ h+='<div class="ring" style="width:200px;height:200px;background:conic-gradient('+st+')"><div style="width:140px;height:140px;background:var(--card);color:var(--tx)">'+sum+'<small style="font-size:13px;font-weight:400;color:var(--mu)">Total</small></div></div>';
+ h+='<div style="margin:16px 0">'+ids.map(function(id,i){return '<div class="row" style="padding:8px 0"><span><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+PAL[i%8]+';margin-right:10px;vertical-align:middle"></span><b><bdi>'+esc(S.nm[id]||'Deleted')+'</bdi></b> <span class="mu">'+Math.round(tot[id]/sum*100)+'%</span></span><b>'+tot[id]+'</b></div>'}).join('')+'</div>';
+ if(V.rp==='week'||V.rp==='month'){h+='<h3>Day-wise</h3>'+days.slice().reverse().map(function(d){var o=new Date(d[0]+'T00:00:00');return '<div class="card" onclick="rgo(\''+d[0]+'\',\'day\')"><div class="row"><b>'+DN[o.getDay()]+', '+o.getDate()+' '+MN[o.getMonth()]+'</b><b style="color:var(--pd)">'+d[1]+'</b></div><div class="mu" style="margin-top:6px">'+names(d[2])+'</div></div>'}).join('')}
+ if(V.rp==='year'){h+='<h3>Month-wise</h3>'+Object.keys(mon).sort().reverse().map(function(k){return '<div class="card" onclick="rgo(\''+k+'\',\'month\')"><div class="row"><b>'+MN[parseInt(k.slice(5),10)-1]+' '+k.slice(0,4)+'</b><b style="color:var(--pd)">'+mon[k]+'</b></div><div class="mu" style="margin-top:6px">'+names(monH[k])+'</div></div>'}).join('')}
+ return h}
+function tget(id){return S.tasbihs.filter(function(t){return t.id===id})[0]}
+function bump(id,n){var t=tget(id);if(t){rec(t,n);render()}}
+function addN(id){ask('Add Count','Enter number',function(v){var t=tget(id);if(t){rec(t,v);render()}})}
+function fmtK(k){var o=new Date(k+'T00:00:00');return DN[o.getDay()]+', '+o.getDate()+' '+MN[o.getMonth()]+' '+o.getFullYear()}
+function cal(y,m,cell){var f=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate(),h='<div class="cal">'+DN.map(function(d){return '<span class="h">'+d+'</span>'}).join('');for(var i=0;i<f;i++)h+='<span></span>';for(var d=1;d<=n;d++){var k=y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2),c=cell(k);h+='<button class="cd '+c[0]+'" onclick="'+c[1]+'">'+d+'</button>'}return h+'</div>'}
+var PK={};
+function openPick(){var d=new Date(V.rd);PK={y:d.getFullYear(),m:d.getMonth(),k:dk(d)};drawPick();$('modal').style.display='flex'}
+function drawPick(){var td=dk(new Date());$('mbox').innerHTML='<div class="mu">Select date</div><div class="t" style="font-size:24px;margin:6px 0 10px">'+fmtK(PK.k)+'</div><div class="row" style="margin-bottom:6px"><button class="circ" onclick="pkStep(-1)">‹</button><b>'+MN[PK.m]+' '+PK.y+'</b><button class="circ" onclick="pkStep(1)">›</button></div>'+cal(PK.y,PK.m,function(k){var s=0,H=S.hist[k]||{};for(var i in H)s+=H[i];return [(k===PK.k?'sel':s>0?'part':'')+(k===td?' td':''),"pkSel('"+k+"')"]})+'<div class="row" style="margin-top:14px;justify-content:flex-end;gap:12px"><button class="chip" style="font-family:inherit;font-size:15px" onclick="$(\'modal\').style.display=\'none\'">Cancel</button><button class="btn" style="width:auto;padding:10px 26px" onclick="pkOk()">OK</button></div>'}
+function pkStep(n){PK.m+=n;if(PK.m<0){PK.m=11;PK.y--}if(PK.m>11){PK.m=0;PK.y++}drawPick()}
+function pkSel(k){PK.k=k;drawPick()}
+function pkOk(){$('modal').style.display='none';V.rd=new Date(PK.k+'T00:00:00').getTime();V.rp='day';V.tab='rep';V.sub=null;render()}
+function counterHTML(){
+ if(!S.tasbihs.length)return '<div class="empty"><div class="big">📿</div><div class="t" style="margin-top:14px;color:var(--mu)">No Tasbihs Added</div><div class="mu" style="margin-top:10px">Tap + to add your first Tasbih</div></div>';
+ return S.tasbihs.map(function(t){var g=t.goal||0,done=g>0&&t.today>=g,p=g?Math.min(100,t.today/g*100):0;
+  return '<div class="card" style="'+(done?'border-left-color:#2ea44f':'')+'" onclick="V.tid='+t.id+';V.sub=\'td\';V.cm=null;V.cday=null;render()"><div class="row"><div class="row" style="justify-content:flex-start;gap:12px"><span style="font-size:24px">'+(done?'✅':'🔖')+'</span><div><div class="t" style="font-size:21px">'+esc(t.name)+'</div>'+(t.desc?'<div class="mu" style="font-size:15px">'+esc(t.desc)+'</div>':'')+'</div></div>'+(done?'<span class="badge">DONE</span>':'')+'</div>'
+  +'<div class="row" style="margin-top:12px"><span class="mu">Goal Progress</span><b style="color:'+(done?'#2ea44f':'var(--pd)')+'">'+p.toFixed(1)+'%</b></div><div class="bar"><i style="width:'+p+'%;'+(done?'background:#2ea44f':'')+'"></i></div>'
+  +'<div class="stats"><span>🚩 Goal: <b>'+(g||'—')+'</b></span><span>✅ Current: <b>'+t.today+'</b></span><span>⏳ Left: <b>'+(g?Math.max(0,g-t.today):'—')+'</b></span></div>'
+  +'<div class="row" style="margin-top:14px"><button class="circ m" onclick="event.stopPropagation();bump('+t.id+',-1)">−</button><button class="btn" onclick="event.stopPropagation();addN('+t.id+')">+ Add Count</button><button class="circ" style="'+(done?'opacity:.4':'')+'" onclick="event.stopPropagation();'+(done?'':'bump('+t.id+',1)')+'">+</button></div></div>'}).join('')}
+function tdHTML(t){
+ var n=new Date(),td=dk(n);if(V.cm==null)V.cm=n.getFullYear()*12+n.getMonth();
+ var y=Math.floor(V.cm/12),mo=V.cm%12,g=t.goal||0,cr=new Date(t.id);cr.setHours(0,0,0,0);var crk=dk(cr);
+ function cnt(k){return (S.hist[k]&&S.hist[k][t.id])||0}
+ function okd(k){var c=cnt(k);return g>0?c>=g:c>0}
+ var el=0,ok=0,ms=0,last=new Date(y,mo+1,0);
+ for(var d=new Date(y,mo,1);d<=last;d.setDate(d.getDate()+1)){var k=dk(d);if(k<crk||k>td)continue;el++;if(okd(k))ok++;else if(k<td)ms++}
+ var sk=0,sd=new Date();if(!okd(dk(sd)))sd.setDate(sd.getDate()-1);while(okd(dk(sd))&&sk<5000){sk++;sd.setDate(sd.getDate()-1)}
+ var sel=V.cday||td;
+ return '<div class="card" style="border-left:0"><div class="row" style="margin-bottom:10px"><button class="circ" onclick="V.cm--;render()">‹</button><b style="font-size:20px;color:var(--pd)">'+MN[mo]+' '+y+'</b><button class="circ" onclick="V.cm++;render()">›</button></div>'
+  +cal(y,mo,function(k){return [(k===V.cday?'sel':okd(k)?'ok':cnt(k)>0?'part':(k>td||k<crk?'dim':''))+(k===td?' td':''),"V.cday='"+k+"';render()"]})+'</div>'
+  +'<div class="card"><div class="mu">'+fmtK(sel)+'</div><div class="t" style="margin-top:4px">'+cnt(sel)+(g?' / '+g:'')+' '+(okd(sel)?'✅':'')+'</div></div>'
+  +'<div class="t" style="margin:6px 0 12px">Insights for '+MN[mo]+' '+y+'</div><div class="ins"><div>🔥<b style="color:#f59e0b">'+sk+'</b><span class="mu">Current Streak</span></div><div>📈<b style="color:#2f8cf0">'+(el?(ok/el*100).toFixed(1):'0.0')+'%</b><span class="mu">Month Progress</span></div><div>✅<b style="color:#2ea44f">'+ok+'</b><span class="mu">Month Completed</span></div><div>❌<b style="color:#d64545">'+ms+'</b><span class="mu">Month Missed</span></div></div>'
+  +'<button class="btn" style="margin-top:18px;background:#fbe3e3;color:var(--red)" onclick="V.sub=null;delT('+t.id+')">Delete this tasbih</button>'}
+function cur(){return S.tasbihs.filter(function(t){return String(t.id)===String(S.sel)})[0]||S.tasbihs[0]}
+function delT(id){S.tasbihs=S.tasbihs.filter(function(t){return t.id!==id});save();render()}
+function delC(id){S.chals=S.chals.filter(function(t){return t.id!==id});save();render()}
+function openC(id){V.cid=id;V.sub='cd';render()}
+function cadd(id,n,lg){var c=S.chals.filter(function(x){return x.id===id})[0];if(c&&!(n<0&&c.current<=0))addChal(c,n,lg)}
+function cask(id){ask('Add Count','Enter number',function(v){cadd(id,v,true)})}
+$('fab').onclick=function(){V.sub=V.tab==='chal'?'addc':'add';render()};
+render();
+setTimeout(function(){$('splash').style.opacity=0;setTimeout(function(){$('splash').style.display='none'},400)},1200);
+</script>
+</body>
+</html>
