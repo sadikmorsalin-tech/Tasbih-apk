@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tasbih Tracker</title>
 <style>
-:root{--p:#1DC4B2;--pd:#0E8F81;--on:#05312d;--bg:#f4fbfa;--card:#fff;--tx:#12302d;--mu:#6b8480;--soft:#dff6f3;--bd:#bfe8e3;--red:#d64545;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+:root{--p:#1DC4B2;--pd:#0E8F81;--on:#05312d;--bg:#f4fbfa;--card:#fff;--tx:#12302d;--mu:#6b8480;--soft:#dff6f3;--bd:#bfe8e3;--red:#d64545;--ok:#2ea44f;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);box-sizing:border-box}
 :root[data-theme=dark]{--bg:#0d1f1d;--card:#142b28;--tx:#e6f6f4;--mu:#8fb0ab;--soft:#173833;--bd:#245650}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
@@ -62,6 +62,46 @@ h3{color:var(--pd);margin:14px 0 8px}
 .cd.dim{color:var(--mu);opacity:.55}.cd.part{background:var(--soft)}.cd.ok{background:#2ea44f;color:#fff}.cd.td{box-shadow:inset 0 0 0 2px var(--pd)}.cd.sel{background:var(--p);color:var(--on);font-weight:700}
 .ins{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ins div{background:var(--card);border-radius:18px;padding:18px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}.ins b{display:block;font-size:30px;margin:6px 0}
 .badge{background:var(--soft);color:#2ea44f;border-radius:20px;padding:6px 14px;font-weight:700;font-size:13px}
+.qv .card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.qv .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.qv .t{font-size:18px;font-weight:700}
+.qv .mu{color:var(--mu);font-size:13px}
+.qv .bar{height:9px;border-radius:9px;background:var(--bd);overflow:hidden;margin:8px 0}
+.qv .bar i{display:block;height:100%;background:var(--pd);border-radius:9px}
+.qv .btn{background:var(--p);color:var(--on);border:0;border-radius:30px;padding:14px;font-size:16px;font-weight:700;width:100%}
+.qv .btn2{background:var(--soft);color:var(--pd)}
+.qv .circ{width:44px;height:44px;border-radius:50%;border:0;font-size:22px;flex:none;background:var(--soft);color:var(--pd)}
+.qv .empty{text-align:center;color:var(--mu);margin-top:16vh}
+.qv .chip{background:var(--soft);border:1px solid var(--bd);border-radius:30px;padding:8px 16px;font-size:14px;color:var(--tx)}
+.qv .chip.on{background:var(--p);color:var(--on);font-weight:700}
+.qv .chips{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.qv .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:12px}
+.qv .g{aspect-ratio:1;border:0;border-radius:7px;background:var(--soft);color:var(--tx);font-size:11px;padding:0}
+.qv .g.p{background:#7ddfd3;color:#05312d}
+.qv .g.f{background:var(--pd);color:#fff}
+.qv .tb{background:var(--soft);border-radius:16px;padding:12px 14px;margin-top:14px}
+.qv .rg{width:66px;height:66px;border-radius:50%;background:conic-gradient(var(--pd) var(--d),var(--bd) 0);display:flex;align-items:center;justify-content:center;flex:none}
+.qv .rg div{width:52px;height:52px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--pd)}
+.qv .rg.big{width:130px;height:130px}
+.qv .rg.big div{width:104px;height:104px;font-size:26px}
+.qv .hero{background:linear-gradient(135deg,#1DC4B2,#8fe6dc);color:#05312d;border-radius:22px;padding:18px;margin-bottom:14px}
+.qv .seg{display:flex;background:var(--soft);border-radius:30px;padding:4px;margin-bottom:14px}
+.qv .seg button{flex:1;border:0;background:none;padding:10px;border-radius:26px;color:var(--mu);font-weight:600;font-size:14px}
+.qv .seg button.on{background:var(--card);color:var(--pd);box-shadow:0 1px 6px rgba(0,0,0,.12)}
+.qv .badge{background:var(--soft);color:var(--ok);border-radius:20px;padding:6px 14px;font-weight:700;font-size:13px}
+.qv .s3{display:flex;gap:10px;margin-bottom:14px}
+.qv .s3 div{flex:1;background:var(--card);border-radius:16px;padding:14px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.qv .s3 b{display:block;font-size:20px}
+.qv .ring{width:200px;height:200px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center}
+.qv .ring div{width:140px;height:140px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;font-weight:800}
+.qv .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.qv .cal .h{color:var(--mu);font-size:12px;padding:6px 0}
+.qv .cd{aspect-ratio:1;border:0;background:none;color:var(--tx);border-radius:50%;font-size:15px;padding:0}
+.qv .cd.part{background:var(--soft)}
+.qv .cd.td{box-shadow:inset 0 0 0 2px var(--pd)}
+.qv .cd.sel{background:var(--p);color:var(--on);font-weight:700}
+.qv .chip{font-family:inherit}.qv .chips{overflow:visible;padding-bottom:0}.qv .card{border-left:0}.qv .hero{text-align:left}
+.fab.pill{width:auto;padding:0 22px;height:54px;border-radius:30px;font-size:16px;font-weight:700}
 </style>
 </head>
 <body>
@@ -86,7 +126,7 @@ function fmt(ts){var d=new Date(ts),m=['Jan','Feb','Mar','Apr','May','Jun','Jul'
 function pct(c){var p=c.goal?c.current/c.goal*100:0;return Math.min(100,p)}
 function pctTxt(c){var p=pct(c);return (p<10&&p>0?p.toFixed(1):Math.round(p))+'%'}
 var $=function(id){return document.getElementById(id)};
-function ask(title,ph,cb){
+function ask(title,ph,cb){$('mbox').className='box';
   $('mbox').innerHTML='<div class="t" style="margin-bottom:12px">'+esc(title)+'</div><input id="mi" type="number" inputmode="numeric" placeholder="'+esc(ph)+'"><div class="row"><button class="btn" id="mc" style="background:var(--soft);color:var(--pd)">Cancel</button><button class="btn" id="mo">OK</button></div>';
   $('modal').style.display='flex';$('mi').focus();
   $('mc').onclick=function(){$('modal').style.display='none'};
@@ -101,7 +141,7 @@ function render(){
   rollDay();
   var h='',m='',fab=false,nav=true;
   var titles={rep:'Overview',log:'Tasbih Log',counter:'Counter',chal:'Challenges',about:'About Developer'};
-  if(V.sub==='add'){
+  if(V.tab==='q'){var qv=qview();h='<header>'+(qv.back?'<button class="back" onclick="QV.sub=null;render()">←</button>':'')+'<button class="thm" onclick="toggleTheme()">'+(S.theme==='dark'?'☀️':'🌙')+'</button>'+qv.title+'</header>';m=qv.m;fab=qv.fab;nav=qv.nav}else if(V.sub==='add'){
     h='<header><button class="back" onclick="V.sub=null;render()">←</button>Add Tasbih</header>';
     var lib=['سبحان الله','الحمد لله','الله أكبر','لا إله إلا الله','أستغفر الله'];
     m='<h3 style="margin-top:0">Quick Library</h3><div class="chips">'+lib.map(function(x,i){var tr=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah'][i];return '<button class="chip" onclick="$(\'fn\').value=\''+x+'\';$(\'fd\').value=\''+tr+'\'">'+x+'</button>'}).join('')+'</div>'
@@ -156,11 +196,13 @@ function render(){
       m='<div class="t" style="font-size:24px">About Me</div><p class="mu" style="font-size:16px;line-height:1.6">Assalamu Alaikum, I am Sadik Mursalin. As a technology enthusiast, I have always wanted to create something that truly benefits people.</p><div class="card"><div class="t" style="color:var(--pd)">✨ App Purpose</div><p class="mu" style="font-size:16px;line-height:1.6">The main purpose of this app is to help people easily track their daily Dhikr or Tasbih. I am not taking any money for this app, and no ads have been included. It is completely for the sake of Allah (Fee Sabilillah).</p><p style="color:var(--pd);font-weight:700;line-height:1.6">I only request your Prayers for me and my family. May Allah accept all our worship.</p></div><p class="mu" style="text-align:center;font-style:italic">Just keep me in your Prayers ❤️</p>';
     }
   }
+  if(V.tab==='rep'&&!V.sub){var sg='<div class="qv"><div class="seg"><button class="'+(V.os==='q'?'':'on')+'" onclick="V.os=\'t\';render()">🔢 Tasbih</button><button class="'+(V.os==='q'?'on':'')+'" onclick="V.os=\'q\';render()">📖 Quran</button></div></div>';if(V.os==='q'){h=h.split('<div class="tabs">')[0]+qovTabs();m=sg+'<div class="qv">'+q_ovHTML()+'</div>'}else m=sg+m}
   $('head').innerHTML=h;$('main').innerHTML=m;
-  $('fab').style.display=fab?'block':'none';
+  $('fab').style.display=fab?'block':'none';$('fab').className='fab'+(V.tab==='q'?' pill':'');$('fab').textContent=V.tab==='q'?'+ New Journey':'+';
   $('nav').style.display=nav?'flex':'none';
-  $('nav').innerHTML=[['rep','📊','Overview'],['counter','🔢','Counter'],['chal','⭐','Challenges'],['about','ℹ️','About']].map(function(x){return '<button class="'+(V.tab===x[0]?'on':'')+'" onclick="V.tab=\''+x[0]+'\';V.sub=null;render()"><span class="i">'+x[1]+'</span>'+x[2]+'</button>'}).join('');
+  $('nav').innerHTML=[['rep','📊','Overview'],['counter','🔢','Counter'],['q','📖','Quran'],['chal','⭐','Challenges'],['about','ℹ️','About']].map(function(x){return '<button class="'+(V.tab===x[0]?'on':'')+'" onclick="V.tab=\''+x[0]+'\';V.sub=null;render()"><span class="i">'+x[1]+'</span>'+x[2]+'</button>'}).join('');
   bind();
+  qcele();
 }
 function bind(){
   if($('fs'))$('fs').onclick=function(){var n=$('fn').value.trim();if(!n){$('fn').focus();return}var nt={id:Date.now(),name:n,desc:$('fd').value.trim(),goal:parseInt($('fg').value,10)||0,rem:$('fr').value,today:0,total:0};S.tasbihs.push(nt);S.sel=nt.id;S.nm[nt.id]=n;save();V.sub=null;V.tab='counter';render()};
@@ -200,7 +242,7 @@ function addN(id){ask('Add Count','Enter number',function(v){var t=tget(id);if(t
 function fmtK(k){var o=new Date(k+'T00:00:00');return DN[o.getDay()]+', '+o.getDate()+' '+MN[o.getMonth()]+' '+o.getFullYear()}
 function cal(y,m,cell){var f=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate(),h='<div class="cal">'+DN.map(function(d){return '<span class="h">'+d+'</span>'}).join('');for(var i=0;i<f;i++)h+='<span></span>';for(var d=1;d<=n;d++){var k=y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2),c=cell(k);h+='<button class="cd '+c[0]+'" onclick="'+c[1]+'">'+d+'</button>'}return h+'</div>'}
 var PK={};
-function openPick(){var d=new Date(V.rd);PK={y:d.getFullYear(),m:d.getMonth(),k:dk(d)};drawPick();$('modal').style.display='flex'}
+function openPick(){$('mbox').className='box';var d=new Date(V.rd);PK={y:d.getFullYear(),m:d.getMonth(),k:dk(d)};drawPick();$('modal').style.display='flex'}
 function drawPick(){var td=dk(new Date());$('mbox').innerHTML='<div class="mu">Select date</div><div class="t" style="font-size:24px;margin:6px 0 10px">'+fmtK(PK.k)+'</div><div class="row" style="margin-bottom:6px"><button class="circ" onclick="pkStep(-1)">‹</button><b>'+MN[PK.m]+' '+PK.y+'</b><button class="circ" onclick="pkStep(1)">›</button></div>'+cal(PK.y,PK.m,function(k){var s=0,H=S.hist[k]||{};for(var i in H)s+=H[i];return [(k===PK.k?'sel':s>0?'part':'')+(k===td?' td':''),"pkSel('"+k+"')"]})+'<div class="row" style="margin-top:14px;justify-content:flex-end;gap:12px"><button class="chip" style="font-family:inherit;font-size:15px" onclick="$(\'modal\').style.display=\'none\'">Cancel</button><button class="btn" style="width:auto;padding:10px 26px" onclick="pkOk()">OK</button></div>'}
 function pkStep(n){PK.m+=n;if(PK.m<0){PK.m=11;PK.y--}if(PK.m>11){PK.m=0;PK.y++}drawPick()}
 function pkSel(k){PK.k=k;drawPick()}
@@ -232,7 +274,130 @@ function delC(id){S.chals=S.chals.filter(function(t){return t.id!==id});save();r
 function openC(id){V.cid=id;V.sub='cd';render()}
 function cadd(id,n,lg){var c=S.chals.filter(function(x){return x.id===id})[0];if(c&&!(n<0&&c.current<=0))addChal(c,n,lg)}
 function cask(id){ask('Add Count','Enter number',function(v){cadd(id,v,true)})}
-$('fab').onclick=function(){V.sub=V.tab==='chal'?'addc':'add';render()};
+/* ===== Quran Journey ===== */
+
+var NM="Al-Fatihah,Al-Baqarah,Al-Imran,An-Nisa,Al-Maidah,Al-An'am,Al-A'raf,Al-Anfal,At-Tawbah,Yunus,Hud,Yusuf,Ar-Ra'd,Ibrahim,Al-Hijr,An-Nahl,Al-Isra,Al-Kahf,Maryam,Ta-Ha,Al-Anbiya,Al-Hajj,Al-Mu'minun,An-Nur,Al-Furqan,Ash-Shu'ara,An-Naml,Al-Qasas,Al-Ankabut,Ar-Rum,Luqman,As-Sajdah,Al-Ahzab,Saba,Fatir,Ya-Sin,As-Saffat,Sad,Az-Zumar,Ghafir,Fussilat,Ash-Shura,Az-Zukhruf,Ad-Dukhan,Al-Jathiyah,Al-Ahqaf,Muhammad,Al-Fath,Al-Hujurat,Qaf,Adh-Dhariyat,At-Tur,An-Najm,Al-Qamar,Ar-Rahman,Al-Waqi'ah,Al-Hadid,Al-Mujadila,Al-Hashr,Al-Mumtahanah,As-Saff,Al-Jumu'ah,Al-Munafiqun,At-Taghabun,At-Talaq,At-Tahrim,Al-Mulk,Al-Qalam,Al-Haqqah,Al-Ma'arij,Nuh,Al-Jinn,Al-Muzzammil,Al-Muddaththir,Al-Qiyamah,Al-Insan,Al-Mursalat,An-Naba,An-Nazi'at,Abasa,At-Takwir,Al-Infitar,Al-Mutaffifin,Al-Inshiqaq,Al-Buruj,At-Tariq,Al-A'la,Al-Ghashiyah,Al-Fajr,Al-Balad,Ash-Shams,Al-Layl,Ad-Duha,Ash-Sharh,At-Tin,Al-Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-Adiyat,Al-Qariah,At-Takathur,Al-Asr,Al-Humazah,Al-Fil,Quraysh,Al-Ma'un,Al-Kawthar,Al-Kafirun,An-Nasr,Al-Masad,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
+var SP=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,566,568,570,572,574,575,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604,605];
+function SS(n){return SP[n-1]}function SE(n){return Math.max(SP[n-1],SP[n]-1)}
+function JS(n){return n==1?1:2+20*(n-1)}function JE(n){return n==30?604:JS(n+1)-1}
+var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],PAL=['#1DC4B2','#f5b400','#e4572e','#4f7cff','#9b5de5','#2ea44f','#ff7aa2','#8d6e63'];
+var QS={js:[]};try{var qraw=localStorage.getItem('qj1');if(qraw)QS=JSON.parse(qraw)}catch(e){}QS.js=QS.js||[];
+var QV={tab:'j',jt:'a',sub:null,id:null,d:{},rp:'day',rd:Date.now(),cele:null},QPK={};
+function q_save(){try{localStorage.setItem('qj1',JSON.stringify(QS))}catch(e){}}
+function q_dk(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function tk(){return q_dk(new Date())}
+function q_fmtK(k){var o=new Date(k+'T00:00:00');return DN[o.getDay()]+', '+o.getDate()+' '+MN[o.getMonth()]+' '+o.getFullYear()}
+function q_esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function gj(id){return QS.js.filter(function(j){return j.id===id})[0]}
+function cnt(j){return Object.keys(j.read).length}
+function tot(j){return j.b-j.a+1}
+function isDone(j){return cnt(j)>=tot(j)}
+function nread(j,a,b){var c=0;for(var p=a;p<=b;p++)if(j.read[p])c++;return c}
+function units(j){var u=[],i;function add(a,b,l){a=Math.max(a,j.a);b=Math.min(b,j.b);if(a<=b)u.push({l:l,a:a,b:b})}
+ if(j.u==='juz')for(i=1;i<=30;i++)add(JS(i),JE(i),i);else if(j.u==='surah')for(i=1;i<=114;i++)add(SS(i),SE(i),i);else for(i=j.a;i<=j.b;i++)u.push({l:i,a:i,b:i});return u}
+function mark(j,a,b,v){var n=0;a=Math.max(a,j.a);b=Math.min(b,j.b);for(var p=a;p<=b;p++){if(v&&!j.read[p]){j.read[p]=1;n++}else if(!v&&j.read[p]){delete j.read[p];n--}}
+ var k=tk(),x=Math.max(0,(j.log[k]||0)+n);if(x)j.log[k]=x;else delete j.log[k];
+ if(isDone(j)){if(!j.done){j.done=k;QV.cele=j.id}}else delete j.done;q_save()}
+function tu(id,i){var j=gj(id),u=units(j)[i];mark(j,u.a,u.b,nread(j,u.a,u.b)<u.b-u.a+1);q_render()}
+function setU(id,u){gj(id).u=u;q_save();q_render()}
+function firstUnread(j){for(var p=j.a;p<=j.b;p++)if(!j.read[p])return p;return j.b}
+function ti(j){var t=tot(j),c=cnt(j),k=tk(),tr=j.log[k]||0;if(!j.days)return{tr:tr};
+ var el=Math.floor((new Date(k+'T00:00:00')-new Date(j.start+'T00:00:00'))/864e5)+1,left=Math.max(1,j.days-el+1),g=Math.ceil((t-c+tr)/left);
+ return{tr:tr,g:g,tl:Math.max(0,g-tr),el:el,left:left,diff:c-Math.ceil(t*Math.min(el,j.days)/j.days)}}
+function doneToday(id){var j=gj(id),T=ti(j),f=firstUnread(j);if(T.tl>0)mark(j,f,f+T.tl-1,true);q_render()}
+function ring(p,big){return '<div class="rg'+(big?' big':'')+'" style="--d:'+Math.min(100,p)*3.6+'deg"><div>'+Math.floor(p)+'%</div></div>'}
+function todayBox(j){if(isDone(j))return '';var T=ti(j),f=firstUnread(j);
+ if(!j.days)return '<div class="tb"><div class="mu">Today</div><div class="t">'+T.tr+' pages read</div><div class="mu">No target set \u2013 read at your own pace.</div></div>';
+ var pp=T.g?Math.min(100,T.tr/T.g*100):0,late=T.el>j.days;
+ return '<div class="tb"><div class="row"><div><div class="mu">\ud83c\udfaf Today\'s target</div><div class="t">'+(T.tl>0?'Read '+T.tl+' more page'+(T.tl>1?'s':''):'Done for today \u2705')+'</div></div><div style="text-align:right"><div class="mu">Day</div><b>'+Math.min(T.el,j.days)+' / '+j.days+'</b></div></div>'
+  +(T.tl>0?'<div class="mu" style="margin-top:4px">Start from page <b>'+f+'</b> \u2192 page <b>'+Math.min(j.b,f+T.tl-1)+'</b></div>':'')
+  +'<div class="bar"><i style="width:'+pp+'%"></i></div><div class="row mu"><span>'+T.tr+' / '+T.g+' read today</span><span>'+(late?'\u23f0 Past target date':T.diff>=0?'On track \ud83d\udc4d':'Behind by '+(-T.diff))+'</span></div></div>'}
+function actions(j){var T=ti(j),m=j.days&&T.tl>0;return '<div class="row" style="margin-top:14px"><button class="btn" style="flex:1.7;width:auto" onclick="'+(m?'doneToday('+j.id+')':'openLog('+j.id+')')+'">'+(m?'\u2713 I read today\'s target':'+ Log pages')+'</button>'+(m?'<button class="btn btn2" style="flex:1;width:auto" onclick="openLog('+j.id+')">+ Log</button>':'')+'</div>'}
+function sub(j){return (j.days?j.days+'-day journey':'Daily journey')+' \u00b7 Pages '+j.a+'\u2013'+j.b}
+function jCard(j){var c=cnt(j),t=tot(j),u=units(j),p=c/t*100;
+ var h='<div class="card"><div class="row" onclick="QV.id='+j.id+';QV.sub=\'det\';q_render()"><div style="min-width:0"><div class="t">'+q_esc(j.name)+'</div><div class="mu">'+sub(j)+'</div><div class="mu" style="margin-top:6px"><b>'+c+' / '+t+'</b> pages read</div></div>'+ring(p)+'</div>'+todayBox(j);
+ if(u.length<=30)h+='<div class="grid">'+gridCells(j,u)+'</div>';
+ return h+actions(j)+'</div>'}
+function gridCells(j,u){return u.map(function(x,i){var f=nread(j,x.a,x.b)/(x.b-x.a+1);return '<button class="g'+(f===1?' f':f>0?' p':'')+'" onclick="tu('+j.id+','+i+')">'+(f===1?'\u2713':x.l)+'</button>'}).join('')}
+function doneDate(j){return j.done||Object.keys(j.log).sort().pop()||j.start}
+function cCard(j){var dd=doneDate(j),n=Math.max(1,Math.round((new Date(dd+'T00:00:00')-new Date(j.start+'T00:00:00'))/864e5)+1);
+ return '<div class="card" style="border-left:5px solid var(--ok)" onclick="QV.id='+j.id+';QV.sub=\'det\';q_render()"><div class="row"><div><div class="t">\ud83c\udfc6 '+q_esc(j.name)+'</div><div class="mu" style="margin-top:4px">Completed on '+q_fmtK(dd)+'</div><div class="mu">Took '+n+' day'+(n>1?'s':'')+(j.days?' \u00b7 target '+j.days+' days '+(n<=j.days?'\u2705':'\u23f0'):'')+'</div></div><span class="badge">DONE</span></div><div class="row" style="margin-top:12px"><span class="mu">'+tot(j)+' pages</span><button class="chip" onclick="event.stopPropagation();again('+j.id+')">\ud83d\udd01 Read again</button></div></div>'}
+function again(id){var j=gj(id);QS.js.push({id:Date.now(),name:j.name,a:j.a,b:j.b,u:j.u,days:j.days,start:tk(),read:{},log:{}});q_save();QV.jt='a';q_render()}
+function detHTML(j){var c=cnt(j),t=tot(j),u=units(j),ks=Object.keys(j.log).sort().reverse().slice(0,30);
+ var h='<div class="hero"><div class="row"><div><div style="font-size:13px;opacity:.8">'+sub(j)+'</div><div class="t" style="font-size:22px;margin:4px 0">'+q_esc(j.name)+'</div><div><b>'+c+'</b> / '+t+' pages</div><div style="font-size:13px;margin-top:2px">'+(isDone(j)?'\ud83c\udfc6 Completed':(t-c)+' pages left')+'</div></div>'+ring(c/t*100,1)+'</div></div>';
+ h+=todayBox(j)+(isDone(j)?'':actions(j));
+ h+='<h3>Progress</h3><div class="chips" style="margin-top:0">'+[['juz','Juz'],['surah','Surah'],['page','Pages']].map(function(x){return '<button class="chip'+(j.u===x[0]?' on':'')+'" onclick="setU('+j.id+',\''+x[0]+'\')">'+x[1]+'</button>'}).join('')+'</div><div class="mu">Tap a box to mark it read / unread</div><div class="grid">'+gridCells(j,u)+'</div>';
+ h+='<h3>Daily log</h3>'+(ks.length?ks.map(function(k){return '<div class="card" style="padding:12px 16px;margin-bottom:8px"><div class="row"><span>'+q_fmtK(k)+'</span><b style="color:var(--pd)">'+j.log[k]+' pages</b></div></div>'}).join(''):'<div class="mu">No reading logged yet</div>');
+ return h+'<button class="btn" style="margin-top:14px;background:#fbe3e3;color:var(--red)" onclick="delJ('+j.id+')">Delete this journey</button>'}
+function openLog(id){var j=gj(id),f=firstUnread(j),T=ti(j),n=j.days&&T.tl>0?T.tl:5,t=Math.min(j.b,f+n-1);
+ $('mbox').innerHTML='<div class="t" style="margin-bottom:6px">Log pages</div><div class="mu" style="margin-bottom:12px">Pages '+j.a+'\u2013'+j.b+'. Enter the pages you read.</div><div class="row"><input id="lf" type="number" inputmode="numeric" value="'+f+'"><input id="lt" type="number" inputmode="numeric" value="'+t+'"></div><div class="row" style="margin-top:4px"><button class="btn btn2" onclick="$(\'modal\').style.display=\'none\'">Cancel</button><button class="btn" onclick="doLog('+id+')">OK</button></div>';
+ $('mbox').className='box qv';$('modal').style.display='flex'}
+function doLog(id){var a=+$('lf').value,b=+$('lt').value;$('modal').style.display='none';if(a>0&&b>=a){mark(gj(id),a,b,true);q_render()}}
+function delJ(id){QS.js=QS.js.filter(function(j){return j.id!==id});q_save();QV.sub=null;q_render()}
+function rngOf(d){var fa=+d.fa||1,fb=+d.fb||fa,a,b,u='juz',nm='',x,y;
+ if(d.type==='quran'){a=1;b=604;nm='My Khatm'}
+ else if(d.type==='juz'){x=Math.min(fa,fb);y=Math.max(fa,fb);a=JS(x);b=JE(y);u=x===y?'page':'juz';nm='Juz '+x+(y>x?'\u2013'+y:'')}
+ else if(d.type==='surah'){x=Math.min(fa,fb);y=Math.max(fa,fb);a=SS(x);b=SE(y);u=x===y?'page':'surah';nm='Surah '+NM[x-1]+(y>x?' + '+NM[y-1]:'')}
+ else{a=Math.min(604,Math.max(1,fa));b=Math.min(604,Math.max(a,+d.fb||a));u='page';nm='Pages '+a+'\u2013'+b}
+ return{a:a,b:b,u:u,nm:nm}}
+function pvHTML(){var d=QV.d,r=rngOf(d),t=r.b-r.a+1,n=parseInt(d.days,10)||0;return '\ud83d\udcd6 Pages '+r.a+'\u2013'+r.b+' ('+t+' pages)'+(n?' \u00b7 about <b>'+Math.ceil(t/n)+' pages/day</b> for '+n+' days':'')}
+function upPrev(){var e=$('pv');if(e)e.innerHTML=pvHTML()}
+function preset(ty,fa,days){QV.d.type=ty;QV.d.fa=fa;QV.d.fb='';QV.d.days=days;q_render()}
+function newHTML(){var d=QV.d,ty=[['quran','Full Quran'],['surah','Surah'],['juz','Juz'],['page','Pages']];
+ function sel(k,n,lab,none){var v=d[k]||'',o=none?'<option value="">None \u2013 only one</option>':'';for(var i=1;i<=n;i++)o+='<option value="'+i+'"'+(String(v)===String(i)||(!none&&!v&&i===1)?' selected':'')+'>'+lab(i)+'</option>';return '<select onchange="QV.d.'+k+'=this.value;q_render()">'+o+'</select>'}
+ var sl=function(i){return i+'. '+NM[i-1]},jl=function(i){return 'Juz '+i};
+ var h='<div class="mu">Quick start</div><div class="chips"><button class="chip" onclick="preset(\'quran\',\'\',30)">\ud83d\udd4b Khatm in 30 days</button><button class="chip" onclick="preset(\'surah\',18,7)">Al-Kahf \u00b7 7 days</button><button class="chip" onclick="preset(\'surah\',36,3)">Ya-Sin \u00b7 3 days</button></div>'
+  +'<input placeholder="Name (optional, e.g. For my dad)" value="'+q_esc(d.name)+'" oninput="QV.d.name=this.value"><div class="mu">What do you want to read?</div><div class="chips">'+ty.map(function(x){return '<button class="chip'+(d.type===x[0]?' on':'')+'" onclick="QV.d.type=\''+x[0]+'\';QV.d.fa=\'\';QV.d.fb=\'\';q_render()">'+x[1]+'</button>'}).join('')+'</div>';
+ if(d.type==='surah')h+='<div class="mu">Surah</div>'+sel('fa',114,sl,0)+'<div class="mu">Add another surah (optional)</div>'+sel('fb',114,sl,1);
+ else if(d.type==='juz')h+='<div class="mu">Juz</div>'+sel('fa',30,jl,0)+'<div class="mu">Add another juz (optional)</div>'+sel('fb',30,jl,1);
+ else if(d.type==='page')h+='<div class="row"><input type="number" inputmode="numeric" placeholder="From page" value="'+q_esc(d.fa)+'" oninput="QV.d.fa=this.value;upPrev()"><input type="number" inputmode="numeric" placeholder="To page" value="'+q_esc(d.fb)+'" oninput="QV.d.fb=this.value;upPrev()"></div>';
+ h+='<div class="mu">Finish in how many days? (optional)</div><div class="chips">'+['7','15','30',''].map(function(x){return '<button class="chip'+(String(d.days)===x?' on':'')+'" onclick="QV.d.days=\''+x+'\';q_render()">'+(x?x+' days':'No target')+'</button>'}).join('')+'</div><input type="number" inputmode="numeric" placeholder="Or type days" value="'+q_esc(d.days)+'" oninput="QV.d.days=this.value;upPrev()">';
+ return h+'<div class="tb" id="pv" style="margin:0 0 14px">'+pvHTML()+'</div><button class="btn" onclick="saveJ()">Start Journey</button>'}
+function saveJ(){var d=QV.d,r=rngOf(d);QS.js.push({id:Date.now(),name:d.name.trim()||r.nm,a:r.a,b:r.b,u:r.u,days:parseInt(d.days,10)||0,start:tk(),read:{},log:{}});q_save();QV.sub=null;QV.tab='j';QV.jt='a';q_render()}
+function q_cal(y,m,cell){var f=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate(),h='<div class="cal">'+DN.map(function(d){return '<span class="h">'+d+'</span>'}).join('');for(var i=0;i<f;i++)h+='<span></span>';for(var d=1;d<=n;d++){var k=y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2),c=cell(k);h+='<button class="cd '+c[0]+'" onclick="'+c[1]+'">'+d+'</button>'}return h+'</div>'}
+function dayTot(k){var s=0;QS.js.forEach(function(j){s+=j.log[k]||0});return s}
+function q_openPick(){var d=new Date(QV.rd);QPK={y:d.getFullYear(),m:d.getMonth(),k:q_dk(d)};q_drawPick();$('mbox').className='box qv';$('modal').style.display='flex'}
+function q_drawPick(){var td=tk();$('mbox').innerHTML='<div class="mu">Select date</div><div class="t" style="font-size:24px;margin:6px 0 10px">'+q_fmtK(QPK.k)+'</div><div class="row" style="margin-bottom:6px"><button class="circ" onclick="q_pkStep(-1)">\u2039</button><b>'+MN[QPK.m]+' '+QPK.y+'</b><button class="circ" onclick="q_pkStep(1)">\u203a</button></div>'+q_cal(QPK.y,QPK.m,function(k){return [(k===QPK.k?'sel':dayTot(k)>0?'part':'')+(k===td?' td':''),"q_pkSel('"+k+"')"]})+'<div class="row" style="margin-top:14px;justify-content:flex-end"><button class="chip" onclick="$(\'modal\').style.display=\'none\'">Cancel</button><button class="btn" style="width:auto;padding:10px 26px" onclick="q_pkOk()">OK</button></div>'}
+function q_pkStep(n){QPK.m+=n;if(QPK.m<0){QPK.m=11;QPK.y--}if(QPK.m>11){QPK.m=0;QPK.y++}q_drawPick()}
+function q_pkSel(k){QPK.k=k;q_drawPick()}
+function q_pkOk(){$('modal').style.display='none';QV.rd=new Date(QPK.k+'T00:00:00').getTime();QV.rp='day';q_render()}
+function q_rng(){var d=new Date(QV.rd),a,b;d.setHours(0,0,0,0);if(QV.rp==='day'){a=new Date(d);b=new Date(d)}else if(QV.rp==='week'){a=new Date(d);a.setDate(d.getDate()-d.getDay());b=new Date(a);b.setDate(a.getDate()+6)}else if(QV.rp==='month'){a=new Date(d.getFullYear(),d.getMonth(),1);b=new Date(d.getFullYear(),d.getMonth()+1,0)}else{a=new Date(d.getFullYear(),0,1);b=new Date(d.getFullYear(),11,31)}return[a,b]}
+function q_rstep(n){var d=new Date(QV.rd);if(QV.rp==='day')d.setDate(d.getDate()+n);else if(QV.rp==='week')d.setDate(d.getDate()+7*n);else if(QV.rp==='month'){d.setDate(1);d.setMonth(d.getMonth()+n)}else d.setFullYear(d.getFullYear()+n);QV.rd=d.getTime();q_render()}
+function q_rgo(k,p){QV.rd=new Date((k.length>7?k:k+'-01')+'T00:00:00').getTime();QV.rp=p;q_render()}
+function q_rlabel(r){var a=r[0],b=r[1];if(QV.rp==='day')return q_fmtK(q_dk(a))+(q_dk(a)===tk()?' (Today)':'');if(QV.rp==='week')return a.getDate()+' '+MN[a.getMonth()]+' \u2013 '+b.getDate()+' '+MN[b.getMonth()]+' '+b.getFullYear();if(QV.rp==='month')return MN[a.getMonth()]+' '+a.getFullYear();return String(a.getFullYear())}
+function q_ovHTML(){
+ var r=q_rng(),a=q_dk(r[0]),b=q_dk(r[1]),by={},days={},mon={},sum=0;
+ QS.js.forEach(function(j){for(var k in j.log){if(k<a||k>b)continue;var n=j.log[k];by[j.id]=(by[j.id]||0)+n;days[k]=days[k]||{};days[k][j.id]=n;mon[k.slice(0,7)]=(mon[k.slice(0,7)]||0)+n;sum+=n}});
+ var ids=Object.keys(by).sort(function(x,y){return by[y]-by[x]}),dl=Object.keys(days).sort(),span=Math.round((r[1]-r[0])/864e5)+1;
+ function nm(o){return Object.keys(o).map(function(i){var j=gj(+i);return '<bdi>'+q_esc(j?j.name:'?')+'</bdi> '+o[i]}).join(' \u00b7 ')}
+ var h='<div class="row" style="margin-bottom:10px"><button class="circ" onclick="q_rstep(-1)">\u2039</button><button class="chip" style="font-size:16px;font-weight:700" onclick="q_openPick()">'+q_rlabel(r)+' \ud83d\udcc5</button><button class="circ" onclick="q_rstep(1)">\u203a</button></div><div style="text-align:center;margin-bottom:12px"><button class="chip" onclick="QV.rd=Date.now();q_render()">Today</button></div>'
+  +'<div class="s3"><div>\ud83d\udcd6<b>'+sum+'</b><span class="mu">Pages</span></div><div>\ud83d\udcc5<b>'+dl.length+'</b><span class="mu">Active days</span></div><div>\ud83d\udcc8<b>'+Math.round(sum/span)+'</b><span class="mu">Avg / day</span></div></div>';
+ if(!sum)return h+'<div class="empty" style="margin-top:8vh"><div style="font-size:56px">\ud83d\udcd6</div><div class="t" style="margin-top:12px;color:var(--mu)">No reading recorded</div></div>';
+ var acc=0,st=ids.map(function(id,i){var p=by[id]/sum*100,s=PAL[i%8]+' '+acc+'% '+(acc+p)+'%';acc+=p;return s}).join(',');
+ h+='<div class="ring" style="background:conic-gradient('+st+')"><div>'+sum+'<small style="font-size:13px;font-weight:400;color:var(--mu)">pages</small></div></div><div style="margin:16px 0">'+ids.map(function(id,i){var j=gj(+id);return '<div class="row" style="padding:8px 0"><span><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+PAL[i%8]+';margin-right:10px;vertical-align:middle"></span><b><bdi>'+q_esc(j?j.name:'?')+'</bdi></b> <span class="mu">'+Math.round(by[id]/sum*100)+'%</span></span><b>'+by[id]+'</b></div>'}).join('')+'</div>';
+ if(QV.rp==='week'||QV.rp==='month')h+='<h3>Day-wise</h3>'+dl.slice().reverse().map(function(k){var s=0;for(var i in days[k])s+=days[k][i];return '<div class="card" onclick="q_rgo(\''+k+'\',\'day\')"><div class="row"><b>'+q_fmtK(k)+'</b><b style="color:var(--pd)">'+s+' pages</b></div><div class="mu" style="margin-top:6px">'+nm(days[k])+'</div></div>'}).join('');
+ if(QV.rp==='year')h+='<h3>Month-wise</h3>'+Object.keys(mon).sort().reverse().map(function(k){return '<div class="card" onclick="q_rgo(\''+k+'\',\'month\')"><div class="row"><b>'+MN[+k.slice(5)-1]+' '+k.slice(0,4)+'</b><b style="color:var(--pd)">'+mon[k]+' pages</b></div></div>'}).join('');
+ return h}
+function jlist(){
+ var act=QS.js.filter(function(j){return !isDone(j)}),cmp=QS.js.filter(isDone).sort(function(x,y){return doneDate(y)<doneDate(x)?-1:1});
+ var h='';
+ if(QV.jt==='a'){var td=dayTot(tk());h+='<div class="hero"><div class="mu" style="color:#05312d;opacity:.8">Assalamu Alaikum \ud83d\udc4b</div><div class="t" style="font-size:22px;margin-top:2px">'+(td?'You read '+td+' page'+(td>1?'s':'')+' today':'Start today\'s reading')+'</div><div style="font-size:13px;margin-top:4px">'+act.length+' active journey'+(act.length===1?'':'s')+'</div></div>'}
+ h+='<div class="seg"><button class="'+(QV.jt==='a'?'on':'')+'" onclick="QV.jt=\'a\';q_render()">Active ('+act.length+')</button><button class="'+(QV.jt==='c'?'on':'')+'" onclick="QV.jt=\'c\';q_render()">Completed ('+cmp.length+')</button></div>';
+ if(QV.jt==='a')h+=act.length?act.map(jCard).join(''):'<div class="empty" style="margin-top:6vh"><div style="font-size:60px">\ud83d\udcd6</div><div class="t" style="margin-top:14px;color:var(--mu)">No active journeys</div><div style="margin-top:10px">Tap \u201cNew Journey\u201d to begin</div></div>';
+ else h+=cmp.length?cmp.map(cCard).join(''):'<div class="empty" style="margin-top:6vh"><div style="font-size:60px">\ud83c\udfc6</div><div class="t" style="margin-top:14px;color:var(--mu)">No completed journeys yet</div></div>';
+ return h}
+
+function q_render(){render()}
+function qnew(){QV.d={type:'quran',name:'',fa:'',fb:'',days:''};QV.sub='new';render()}
+function qview(){var h,m,fab=false,nav=true,j;
+ if(QV.sub==='new'){h=['New Journey',1];m=newHTML();nav=false}
+ else if(QV.sub==='det'){j=gj(QV.id);if(!j){QV.sub=null;return qview()}h=['Journey',1];m=detHTML(j)}
+ else{h=['Quran Journey',0];fab=QV.jt==='a';m=jlist()}
+ return{title:h[0],back:h[1],m:'<div class="qv">'+m+(fab?'<div style="height:70px"></div>':'')+'</div>',fab:fab,nav:nav}}
+function qovTabs(){return '<div class="tabs">'+[['day','Day'],['week','Week'],['month','Month'],['year','Year']].map(function(x){return '<button class="'+(QV.rp===x[0]?'on':'')+'" onclick="QV.rp=\''+x[0]+'\';render()">'+x[1]+'</button>'}).join('')+'</div>'}
+function qcele(){if(!QV.cele)return;var cj=gj(QV.cele);QV.cele=null;if(cj){$('mbox').className='box qv';$('mbox').innerHTML='<div style="text-align:center"><div style="font-size:64px">\ud83c\udf89</div><div class="t" style="font-size:22px;margin:8px 0">Alhamdulillah!</div><div class="mu" style="font-size:15px;margin-bottom:16px">You completed <b>'+q_esc(cj.name)+'</b>. May Allah accept it.</div><button class="btn" onclick="$(\'modal\').style.display=\'none\';QV.sub=null;V.tab=\'q\';V.sub=null;QV.jt=\'c\';render()">See completed</button></div>';$('modal').style.display='flex'}}
+
+$('fab').onclick=function(){if(V.tab==='q'){qnew();return}V.sub=V.tab==='chal'?'addc':'add';render()};
 render();
 setTimeout(function(){$('splash').style.opacity=0;setTimeout(function(){$('splash').style.display='none'},400)},1200);
 </script>
